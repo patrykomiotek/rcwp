@@ -21,7 +21,7 @@ function Products() {
   useEffect(() => {
     fetch('https://api.airtable.com/v0/appp0HGf4paT2Gh0O/products?maxRecords=3&view=default', {
       headers: {
-        Authorization: `Bearer keyg07sAHZzFK89eL`
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`
       }
     })
     .then(response => response.json())
