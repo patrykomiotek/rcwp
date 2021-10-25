@@ -16,14 +16,14 @@ export type ProductType = {
   }
 }
 
-const axiosInstance = axios({
+const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     Authorization: `Bearer ${API_TOKEN}`
   }
 });
 
-function fetchProducts(): Promise<AxiosResponse<ProductType>> {
+function fetchProducts(): Promise<AxiosResponse<ProductResponse>> {
   return axiosInstance.get('/products?maxRecords=3&view=default');
   // return axios.get(`${API_BASE_URL}/products?maxRecords=3&view=default`, {
   //   headers: {

@@ -20,9 +20,8 @@ function Products() {
   async function fetchData() {
     try {
       const response = await fetchProducts();
-      // console.log(response.data.records);
-      // setProducts(response.data);
-      // setIsLoading(false);
+      setProducts(response.data.records);
+      setIsLoading(false);
     } catch {
       console.log('Złapałem błąd :)');
       setIsLoading(false);
