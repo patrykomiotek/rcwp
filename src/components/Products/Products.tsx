@@ -25,7 +25,7 @@ function Products() {
   //   .then(data => setFoo(data))
   // });
   useEffect(() => {
-    fetch('httpss://api.airtable.com/v0/appp0HGf4paT2Gh0O/products?maxRecords=3&view=default', {
+    fetch('https://api.airtable.com/v0/appp0HGf4paT2Gh0O/products?maxRecords=3&view=default', {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`
       }
@@ -34,11 +34,15 @@ function Products() {
       if (response.ok) { // 200
         return response.json();
       }
+    }, (error) => {
+      // 
     })
     .then(data => {
       // const sum = 2 / 0;
       setProducts(data.records);
       setIsLoading(false);
+    }, (error) => {
+
     })
     .catch(() => {
       console.log('Złapałem błąd :)');
