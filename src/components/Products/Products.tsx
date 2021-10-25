@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchProducts } from 'services/fetchProducts';
-import type { ProductType } from 'services/fetchProducts';
+import type { ProductType } from 'types/ProductType';
 // const Products = React.FC() => <div>...</div>
 
 const Loading = () => <div>Loading...</div>;

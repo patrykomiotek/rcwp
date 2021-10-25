@@ -1,19 +1,12 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
+import type { ProductType } from 'types/ProductType';
 
 const API_BASE_URL = 'https://api.airtable.com/v0/appp0HGf4paT2Gh0O';
 const API_TOKEN = process.env.REACT_APP_AIRTABLE_TOKEN;
 
 export type ProductResponse = {
   records: ProductType[];
-}
-
-export type ProductType = {
-  id: string;
-  fields: {
-    name: string;
-    price: number;
-  }
 }
 
 const axiosInstance = axios.create({
