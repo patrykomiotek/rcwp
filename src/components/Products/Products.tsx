@@ -1,14 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchProducts } from 'services/fetchProducts';
+import type { ProductType } from 'services/fetchProducts';
 // const Products = React.FC() => <div>...</div>
-
-type ProductType = {
-  id: string;
-  fields: {
-    name: string;
-    price: number;
-  }
-}
 
 const Loading = () => <div>Loading...</div>;
 const Error = () => <div>Error 🚫</div>;
@@ -26,9 +19,10 @@ function Products() {
   // });
   async function fetchData() {
     try {
-      const data = await fetchProducts();
-      setProducts(data.records);
-      setIsLoading(false);
+      const response = await fetchProducts();
+      // console.log(response.data.records);
+      // setProducts(response.data);
+      // setIsLoading(false);
     } catch {
       console.log('Złapałem błąd :)');
       setIsLoading(false);
@@ -46,7 +40,7 @@ function Products() {
       {isError && <Error />}
       {products.map((elem) => (
         <div key={elem.id}>
-          {elem.fields.name} {elem.fields.price}
+          {elem.fields.name} {elem.fields.name}
         </div>
       ))}
     </div>
