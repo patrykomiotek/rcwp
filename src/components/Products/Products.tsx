@@ -24,21 +24,22 @@ function Products() {
   //   .then(response => response.json())
   //   .then(data => setFoo(data))
   // });
-  useEffect(() => {
-    fetchProducts()
-    .then(data => {
-      // const sum = 2 / 0;
+  async function fetchData() {
+    try {
+      const data = await fetchProducts();
       setProducts(data.records);
       setIsLoading(false);
-    })
-    .catch(() => {
+    } catch {
       console.log('Złapałem błąd :)');
       setIsLoading(false);
       setIsError(true);
-    })
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
-  
   return (
     <div>
       {isLoading && <Loading />}
