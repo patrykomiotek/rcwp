@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import type { Store } from '../../store';
+import type { RootState } from '../../store';
 // import type { User } from './store';
 import { asyncFetchUsers } from './store';
 
-const selectUsers = (state: Store) => state.users.data;
-const selectIsLoading = (state: Store) => state.users.isLoading;
+const selectUsers = (state: RootState) => state.users.data;
+const selectIsLoading = (state: RootState) => state.users.isLoading;
 
 const UsersList = () => {
   const users = useSelector(selectUsers);

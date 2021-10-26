@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
+import type { Action } from 'redux';
 import { connect } from 'react-redux';
 
-import type { Store } from '../../store';
+import type { RootState, AppDispatch } from '../../store';
 import type { User } from './store';
 import { asyncFetchUsers } from './store';
+// import type { }
 
+// TODO: use this
 type UserListProps = {
   users: User[];
   fetchUsers: any;
@@ -31,12 +34,12 @@ const UsersList = ({ users, fetchUsers, fetchOneUser, propAsyncFetchUsers, isLoa
   );
 }
 
-const mapStateToProps = (state: Store) => ({
+const mapStateToProps = (state: RootState) => ({
   users: state.users.data,
   isLoading: state.users.isLoading,
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
   fetchUsers: () => dispatch({
     type: 'users/fetch',
     payload: [{
