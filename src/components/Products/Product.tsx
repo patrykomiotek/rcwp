@@ -4,7 +4,7 @@ import { ProductType } from 'types/ProductType';
 
 type ResponseType = "pending" | "rejected" | "success";
 
-const productId = "rec22rh3KWMQ1dNRm";
+const productId = "rec22rh3KWMQ1dNRm!";
 
 function Product() {
   const [status, setStatus] = useState<ResponseType>("pending");
@@ -14,15 +14,24 @@ function Product() {
   useEffect(() => {
     fetchProduct(productId)
     .then(
-      (response) => setProduct(response.data),
-      (error) => setIsError(true)
+      (response) => {
+        setStatus("success");
+        setProduct(response.data);
+      },
+      (error) => {
+        setStatus("rejected");
+        setIsError(true);
+        setProduct(null);
+        console.error(error);
+      }
     )
   }, []);
 
   console.log('Product: ', product);
   return (
     <div>
-      {product && product.fields.name}
+      <p>Status: {status}</p>
+      <p>{product && product.fields.name}</p>
     </div>
   );
 }
