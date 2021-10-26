@@ -13,7 +13,7 @@ import { Name } from 'components/Name';
 import { Animals } from 'components/Animals';
 import { Products, Product } from 'components/Products';
 import { JsxElement } from 'typescript';
-// import { Clicker } from 'components/Clicker';
+import { Clicker } from 'components/Clicker';
 import { store } from './store';
 
 interface Error {
@@ -108,7 +108,7 @@ function App() {
     <div>
       <UserProvider value={contextValues}>
         <Container>
-          {/* <Clicker /> */}
+          <Clicker />
           {/* <ErrorBoundary FallbackComponent={FallbackComponent}> */}
             {/* <Product /> */}
           {/* </ErrorBoundary> */}

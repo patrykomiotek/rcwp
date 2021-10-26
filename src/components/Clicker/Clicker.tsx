@@ -1,31 +1,51 @@
-// import { useState, useReducer } from 'react';
-// import type { MouseEventHandler, ReducerWithoutAction } from "react";
+import { useReducer } from 'react';
+import type { MouseEventHandler } from "react";
 
-// type CounterState = {
-//   counterValue: number;
-//   status: string;
-// }
+type CounterState = {
+  counterValue: number;
+}
 
-// // function counterReducer<ReducerWithoutAction>(arg1: CounterState, arg2: any) {
-// function counterReducer(arg1: ReducerWithoutAction<CounterState>, arg2: any) {
-//   // action.type
+enum ActionTypes {
+  increase = 'INCREASE',
+}
 
-//   console.log('arg1: ', arg1);
-// }
+const INITIAL_STATE: CounterState = {
+  counterValue: 0
+}
 
-// function Clicker() {
-//   // const [value, setValue] = useReducer();
-//   // const [value, setValue] = useReducer(counterReducer, 0);
-//   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
-//     console.log('setValue: ', setValue);
-//   }
-//   return (
-//     <div>
-//       <button onClick={handleClick}>{value}</button>
-//     </div>
-//   );
-// }
+type Action = {
+  type: ActionTypes,
+}
 
-// export { Clicker };
+const increaseAction: Action = {
+  type: ActionTypes.increase,
+}
 
-export {};
+function counterReducer(state: CounterState, action: Action) {
+  const { type } = action;
+
+  switch (type) {
+    case ActionTypes.increase:
+      return {
+        ...state,
+        counterValue: state.counterValue + 1,
+      }
+    default:
+      return state;
+  }
+}
+
+function Clicker() {
+  const [state, dispatch] = useReducer(counterReducer, INITIAL_STATE);
+  // const [value, setValue] = useReducer(counterReducer, 0);
+  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(increaseAction);
+  }
+  return (
+    <div>
+      <button onClick={handleClick}>{state.counterValue}</button>
+    </div>
+  );
+}
+
+export { Clicker };
