@@ -1,14 +1,16 @@
 import { rest } from 'msw';
+import type { RestRequest } from 'msw';
 
 import { apiConfig } from 'services/config';
+import type { ProductResponse } from 'services/fetchProducts';
 
 export const handlers = [
-  rest.get(apiConfig.fetchProducts, (req, res, ctx) => {
+  rest.get<RestRequest, ProductResponse>(apiConfig.fetchProducts, (_req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
         records: [{
-          id: 1,
+          id: "1",
           fields: {
             name: 'Laptop',
             price: 123

