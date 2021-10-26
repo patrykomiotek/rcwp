@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 // import App from './App';
-import { UserListConnected } from 'components/User/UsersList';
+import { UsersListConnected } from 'components/User/UsersListConnected';
+import { UsersList } from 'components/User/UsersList';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store';
 
@@ -16,7 +17,9 @@ import { store } from './store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <UserListConnected />
+      <UsersList />
+      <hr />
+      <UsersListConnected />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
