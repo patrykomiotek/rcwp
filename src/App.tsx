@@ -108,7 +108,7 @@ function App() {
     <div>
       <UserProvider value={contextValues}>
         <Container>
-          <Clicker />
+          {/* <Clicker /> */}
           {/* <ErrorBoundary FallbackComponent={FallbackComponent}> */}
             {/* <Product /> */}
           {/* </ErrorBoundary> */}

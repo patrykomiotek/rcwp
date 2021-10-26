@@ -1,31 +1,11 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunk from 'redux-thunk';
 
-type User = {
-  id: string;
-  name: string;
-}
-type StateType = {
-  data: User[]
-}
-type ActionType = {
-  type: string;
-  payload: User
-}
-const INITIAL_STATE: StateType = {
-  data: [],
-};
+import { userReducer } from 'components/User/store';
+import type { StateType as UsersType } from 'components/User/store';
 
-const userReducer = (state: StateType = INITIAL_STATE, action: ActionType) => {
-  switch (action.type) {
-    case 'users/fetch':
-      return {
-        ...state,
-        data: action.payload,
-      }
-    default:
-      return state;
-  }
+export type Store = {
+  users: UsersType
 }
 
 const rootReducer = combineReducers({
@@ -33,4 +13,13 @@ const rootReducer = combineReducers({
   // products: productsReducer,
   // ui: uiReducer,
 });
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const middleware = [thunk];
+const composeEnhancers = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+export const store = createStore(
+  rootReducer, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(...middleware)
+  )
+);
+
+
