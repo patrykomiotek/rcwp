@@ -1,24 +1,28 @@
 import { useEffect } from 'react';
-import { Action, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import type { Store } from '../../store';
 import type { User } from './store';
+import { asyncFetchUsers } from './store';
 
 type UserListProps = {
   users: User[];
   fetchUsers: any;
   fetchOneUser: any;
+  propAsyncFetchUsers: any;
+  isLoading: boolean;
 }
 
-const UsersList = ({ users, fetchUsers, fetchOneUser }: UserListProps) => {
+const UsersList = ({ users, fetchUsers, fetchOneUser, propAsyncFetchUsers, isLoading }: UserListProps) => {
   useEffect(() => {
-    fetchUsers();
-    const userid = 456;
-    fetchOneUser(userid);
+    // fetchUsers();
+    // const userid = 456;
+    // fetchOneUser(userid);
+    propAsyncFetchUsers();
   }, []);
   return (
     <div>
+      {isLoading && <p>Loading...</p>}
       {users && users.map((elem) => (
         <div key={elem.id}>{elem.name}</div>
       ))}
@@ -28,6 +32,7 @@ const UsersList = ({ users, fetchUsers, fetchOneUser }: UserListProps) => {
 
 const mapStateToProps = (state: Store) => ({
   users: state.users.data,
+  isLoading: state.users.isLoading,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -44,7 +49,8 @@ const mapDispatchToProps = (dispatch: any) => ({
   fetchOneUser: (userId: number) => dispatch({
     type: 'users/fetchOneUser',
     payload: { userId }
-  })
+  }),
+  propAsyncFetchUsers: () => dispatch(asyncFetchUsers())
 });
 
 const UserListConnected = connect(
