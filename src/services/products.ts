@@ -4,11 +4,11 @@ import type { ProductType } from 'types/ProductType';
 
 import { axiosInstance, apiConfig } from './config';
 
-export type ProductResponse = {
+export type ProductListResponse = {
   records: ProductType[];
 }
 
-function fetchProducts(): Promise<AxiosResponse<ProductResponse>> {
+function fetchProducts(): Promise<AxiosResponse<ProductListResponse>> {
   return axiosInstance.get(apiConfig.fetchProducts);
   // return axios.get(`${API_BASE_URL}/products?maxRecords=3&view=default`, {
   //   headers: {
@@ -17,8 +17,12 @@ function fetchProducts(): Promise<AxiosResponse<ProductResponse>> {
   // });
 }
 
+function fetchProduct(id: string): Promise<AxiosResponse<ProductType>> {
+  return axiosInstance.get(apiConfig.fetchProduct(id));
+}
+
 function login() {
   return axiosInstance.post('/user/login')
 }
 
-export { fetchProducts };
+export { fetchProducts, fetchProduct };

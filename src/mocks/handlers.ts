@@ -2,10 +2,10 @@ import { rest } from 'msw';
 import type { RestRequest } from 'msw';
 
 import { apiConfig } from 'services/config';
-import type { ProductResponse } from 'services/fetchProducts';
+import type { ProductListResponse } from 'services/products';
 
 export const handlers = [
-  rest.get<RestRequest, ProductResponse>(apiConfig.fetchProducts, (_req, res, ctx) => {
+  rest.get<RestRequest, ProductListResponse>(apiConfig.fetchProducts, (_req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

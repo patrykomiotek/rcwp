@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchProducts } from 'services/fetchProducts';
+import { fetchProducts } from 'services/products';
 import type { ProductType } from 'types/ProductType';
 // const Products = React.FC() => <div>...</div>
 

@@ -11,7 +11,7 @@ import { UserProvider } from 'components/UserContext';
 import { UserCard, LoginButton } from 'components/User';
 import { Name } from 'components/Name';
 import { Animals } from 'components/Animals';
-import { Products } from 'components/Products';
+import { Products, Product } from 'components/Products';
 
 function App() {
   const [name, setName] = useState<string | null>(null);
@@ -57,7 +57,8 @@ function App() {
     <div>
       <UserProvider value={contextValues}>
         <Container>
-          <Products />
+          <Product />
+          {/* <Products /> */}
           {/* <Animals /> */}
           {/* <RegistrationForm defaultEmail="test@wp.pl" /> */}
           <hr />

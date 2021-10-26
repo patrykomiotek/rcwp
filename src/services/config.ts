@@ -5,6 +5,8 @@ const API_TOKEN = process.env.REACT_APP_AIRTABLE_TOKEN;
 
 export const apiConfig = {
   fetchProducts: `${API_BASE_URL}/products?maxRecords=3&view=default`,
+  fetchProduct: (id: string) => `${API_BASE_URL}/products/${id}`,
+  // fetchProduct: `${API_BASE_URL}/products/`,
   login: '/user/login',
 }
 
