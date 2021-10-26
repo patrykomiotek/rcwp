@@ -4,7 +4,7 @@ import { ProductType } from 'types/ProductType';
 
 type ResponseType = "pending" | "rejected" | "success";
 
-const productId = "rec22rh3KWMQ1dNRm!";
+const productId = "rec22rh3KWMQ1dNRm";
 
 function Product() {
   const [status, setStatus] = useState<ResponseType>("pending");

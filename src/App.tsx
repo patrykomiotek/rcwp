@@ -2,7 +2,7 @@
 // import { Counter } from 'components/Counter';
 // import { Generator } from 'components/Generator';
 import { RegistrationForm } from 'components/RegistrationForm';
-import React, { MouseEventHandler, useState, useRef } from 'react';
+import React, { MouseEventHandler, useState, useRef, Component, ReactNode } from 'react';
 import { Hello } from 'components/Hello';
 import { Container } from 'components/Container';
 import { Main } from 'components/Main';
@@ -12,6 +12,47 @@ import { UserCard, LoginButton } from 'components/User';
 import { Name } from 'components/Name';
 import { Animals } from 'components/Animals';
 import { Products, Product } from 'components/Products';
+import { JsxElement } from 'typescript';
+
+interface Error {
+  stack?: string;
+}
+
+type FallbackComponentProps = {
+  error: Error
+}
+
+function FallbackComponent({ error }: FallbackComponentProps): React.ReactElement {
+// function FallbackComponent(): ReactNode {
+  return <p>Oh no we have an error {error}</p>
+}
+type ErrorBoundaryProps = {
+  FallbackComponent: React.ReactElement
+}
+type ErrorBoundaryState = {
+  error: Error | null
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  state = {
+    error: null
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+
+  render() {
+    console.log('State: ', this.state);
+    if (this.state.error) {
+      // console.log('State with error', this.props.FallbackComponent);
+      const ErrorFallback = this.props.FallbackComponent as React.ReactNode;
+      // return <ErrorFallback error={this.state.error} />
+      return "Error boundary";
+    }
+    return this.props.children;
+  }
+}
 
 function App() {
   const [name, setName] = useState<string | null>(null);
@@ -57,7 +98,9 @@ function App() {
     <div>
       <UserProvider value={contextValues}>
         <Container>
-          <Product />
+          {/* <ErrorBoundary FallbackComponent={FallbackComponent}> */}
+            <Product />
+          {/* </ErrorBoundary> */}
           {/* <Products /> */}
           {/* <Animals /> */}
           {/* <RegistrationForm defaultEmail="test@wp.pl" /> */}
