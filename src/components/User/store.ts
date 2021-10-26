@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { Action, Dispatch } from 'redux';
+import { AppDispatch } from '../../store';
 
 export type User = {
   id: string;
@@ -46,20 +48,22 @@ export { userReducer }
 export function asyncFetchUsers() {
   // The `extraArgument` is the third arg for thunk functions
   // return (dispatch, getState, api) => {
-  return (dispatch: any) => {
+  return (dispatch: AppDispatch) => {
     // you can use api here
     dispatch({ type: 'users/fetchRequested' });
 
     fetch('https://randomuser.me/api/?results=10')
     .then(response => response.json())
     .then(data => {
+      // TODO: type response instead of any
       dispatch({ type: 'users/fetchSuccess', payload: data.results.map((elem: any) => ({
           id: elem.login.uuid,
           name: elem.name.first
         }))
       });
     })
-    .catch(() => dispatch('users/fetchFailed'))
+    // .catch(() => dispatch({'users/fetchFailed'}))
+    .catch(() => dispatch({ type: 'users/fetchFailed' }))
   }
 }
 

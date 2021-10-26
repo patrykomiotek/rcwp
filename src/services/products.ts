@@ -18,8 +18,8 @@ function fetchProducts(): Promise<AxiosResponse<ProductListResponse>> {
 }
 
 function fetchProduct(id: string): Promise<AxiosResponse<ProductType>> {
-  return axiosInstance.get(apiConfig.fetchProduct(id));
-  // throw new Error('Oh no!');
+  // return axiosInstance.get(apiConfig.fetchProduct(id));
+  throw new Error('Oh no!');
 }
 
 function login() {
