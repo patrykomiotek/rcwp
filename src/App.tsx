@@ -2,7 +2,7 @@
 // import { Counter } from 'components/Counter';
 // import { Generator } from 'components/Generator';
 import { RegistrationForm } from 'components/RegistrationForm';
-import React, { MouseEventHandler, useState, useRef, Component, ReactNode } from 'react';
+import React, { useEffect, MouseEventHandler, useState, useRef, Component, ReactNode } from 'react';
 import { Hello } from 'components/Hello';
 import { Container } from 'components/Container';
 import { Main } from 'components/Main';
@@ -14,6 +14,7 @@ import { Animals } from 'components/Animals';
 import { Products, Product } from 'components/Products';
 import { JsxElement } from 'typescript';
 // import { Clicker } from 'components/Clicker';
+import { store } from './store';
 
 interface Error {
   stack?: string;
@@ -72,6 +73,14 @@ function App() {
   const loginHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     setIsLogged((value) => !value);
   }
+  useEffect(() => {
+    console.log(store.getState());
+    store.dispatch({
+      type: 'users/fetch',
+      payload: { id: "2", name: 'Test'}
+    });
+    console.log(store.getState());
+  }, []);
 
   const contextValues = {
     isLogged,
