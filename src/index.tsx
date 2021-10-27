@@ -6,6 +6,7 @@ import App from './App';
 import { UsersListConnected } from 'components/User/UsersListConnected';
 import { UsersList } from 'components/User/UsersList';
 import reportWebVitals from './reportWebVitals';
+import { FormPage } from 'pages/FormPage';
 import { store } from './store';
 
 // Start the mocking conditionally.
@@ -17,7 +18,7 @@ import { store } from './store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <FormPage />
       {/* <UsersList />
       <hr />
       <UsersListConnected /> */}

@@ -1,7 +1,7 @@
 // import { Button, BGColors } from './Button';
 // import { Counter } from 'components/Counter';
 // import { Generator } from 'components/Generator';
-import { RegistrationForm } from 'components/RegistrationForm';
+// import { RegistrationForm } from 'components/OldRegistrationForm';
 import React, { useEffect, MouseEventHandler, useState, useRef } from 'react';
 
 import { Hello } from 'components/Hello';
