@@ -11,7 +11,7 @@ import { RegistrationForm } from './components/OldRegistrationForm/RegistrationF
 import { NameProviderComponent, MouseProviderComponent } from 'components/Patterns';
 import { GenericUsersList } from 'components/Patterns';
 import { Switch } from 'components/Patterns';
-import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/Toggle';
+import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/Patterns/Toggle';
 import { store } from './store';
 
 // Start the mocking conditionally.
