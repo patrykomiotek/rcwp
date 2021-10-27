@@ -10,6 +10,7 @@ import { FormPage } from 'pages/FormPage';
 import { RegistrationForm } from './components/OldRegistrationForm/RegistrationForm';
 import { NameProviderComponent, MouseProviderComponent } from 'components/Patterns';
 import { GenericUsersList } from 'components/Patterns';
+import { Switch } from 'components/Patterns';
 import { store } from './store';
 
 // Start the mocking conditionally.
@@ -24,7 +25,16 @@ ReactDOM.render(
       <Profiler id="myId" onRender={(id, phase, actualDuration) => {
         // console.info(`[${id}] ${phase}: ${actualDuration}`);
       }}>
-        <GenericUsersList />
+        <Switch />
+
+        {/* <Toggle>
+          <ToggleOn>Toggle is on</ToggleOn>
+          <ToggleOff>Toggle is off</ToggleOff>
+          <ToggleButton />
+        </Toggle> */}
+
+
+        {/* <GenericUsersList /> */}
         {/* <NameProviderComponent />
         <MouseProviderComponent /> */}
         {/* <FormPage /> */}
