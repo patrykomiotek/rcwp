@@ -13,7 +13,9 @@ const UsersList = () => {
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(asyncFetchUsers());
+    if (!users.length) {
+      dispatch(asyncFetchUsers());
+    }
   }, []);
   return (
     <div>
