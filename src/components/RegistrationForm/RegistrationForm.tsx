@@ -1,6 +1,14 @@
 import { FormEvent } from "react";
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object({
+  email: yup.string().email("To nie jest prawidłowy email").required(),
+  password: yup.string().required(),
+  agree: yup.boolean(),
+}).required();
 
 export type DataType = {
   email: string;
@@ -13,7 +21,9 @@ type RegistrationFormProps = {
 }
 
 function RegistrationForm({ onSubmit }: RegistrationFormProps) {
-  const { register, handleSubmit, formState } = useForm<DataType>();
+  const { register, handleSubmit, formState } = useForm<DataType>({
+    resolver: yupResolver(schema)
+  });
   console.log('Form state: ', formState);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
