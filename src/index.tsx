@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
@@ -7,6 +7,7 @@ import { UsersListConnected } from 'components/User/UsersListConnected';
 import { UsersList } from 'components/User/UsersList';
 import reportWebVitals from './reportWebVitals';
 import { FormPage } from 'pages/FormPage';
+import { RegistrationForm } from './components/OldRegistrationForm/RegistrationForm';
 import { store } from './store';
 
 // Start the mocking conditionally.
@@ -18,7 +19,12 @@ import { store } from './store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <FormPage />
+      <Profiler id="myId" onRender={(id, phase, actualDuration) => {
+        // console.info(`[${id}] ${phase}: ${actualDuration}`);
+      }}>
+        <FormPage />
+        <RegistrationForm defaultEmail="test@wp.pl" />
+      </Profiler>
       {/* <UsersList />
       <hr />
       <UsersListConnected /> */}
