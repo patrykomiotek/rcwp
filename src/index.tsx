@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
@@ -6,6 +6,11 @@ import App from './App';
 import { UsersListConnected } from 'components/User/UsersListConnected';
 import { UsersList } from 'components/User/UsersList';
 import reportWebVitals from './reportWebVitals';
+import { GenericUserList } from 'components/Patterns';
+import { MouseProviderComponent, NameProviderComponent } from 'components/Patterns';
+import { ConsoleGreeting } from 'components/Patterns';
+import { Toggle, ToggleOn, ToggleOff, ToggleButton } from 'components/Patterns/Toggle';
+
 import { store } from './store';
 
 // Start the mocking conditionally.
@@ -17,7 +22,17 @@ import { store } from './store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Profiler id="RWCP" onRender={(id, phase) => console.log('id: ', id, ' phase: ', phase)}>
+        <ConsoleGreeting name="Patryk" />
+        <GenericUserList />
+        <NameProviderComponent />
+        <MouseProviderComponent />
+        <Toggle>
+          <ToggleOn>The button is on</ToggleOn>
+          <ToggleOff>The button is off</ToggleOff>
+          <ToggleButton />
+        </Toggle>
+      </Profiler>
       {/* <UsersList />
       <hr />
       <UsersListConnected /> */}
