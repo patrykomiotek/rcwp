@@ -13,7 +13,8 @@ type RegistrationFormProps = {
 }
 
 function RegistrationForm({ onSubmit }: RegistrationFormProps) {
-  const { register, handleSubmit } = useForm<DataType>();
+  const { register, handleSubmit, formState } = useForm<DataType>();
+  console.log('Form state: ', formState);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -22,7 +23,9 @@ function RegistrationForm({ onSubmit }: RegistrationFormProps) {
       </div>
       <div>
         <label>Password</label>
-        <input type="password" {...register("password")} />
+        <input
+          type="password"
+          {...register("password")} />
       </div>
       <div>
         <label>Agree</label>
