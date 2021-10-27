@@ -7,7 +7,7 @@ import * as yup from 'yup';
 const schema = yup.object({
   email: yup.string().email("To nie jest prawidłowy email").required(),
   password: yup.string().required(),
-  agree: yup.boolean(),
+  agree: yup.boolean().required(),
 }).required();
 
 export type DataType = {
@@ -24,22 +24,26 @@ function RegistrationForm({ onSubmit }: RegistrationFormProps) {
   const { register, handleSubmit, formState } = useForm<DataType>({
     resolver: yupResolver(schema)
   });
-  console.log('Form state: ', formState);
+  const { errors } = formState;
+  console.log('Form errors: ', errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>E-mail</label>
-        <input type="email" {...register("email")} />
+        <input {...register("email")} />
+        <p>{errors?.email?.message}</p>
       </div>
       <div>
         <label>Password</label>
         <input
           type="password"
           {...register("password")} />
+        <p>{errors?.password?.message}</p>
       </div>
       <div>
         <label>Agree</label>
         <input type="checkbox" {...register("agree")} />
+        <p>{errors?.agree?.message}</p>
       </div>
       <div>
         <input type="submit" value="Send me" />
