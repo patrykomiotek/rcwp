@@ -21,11 +21,16 @@ type RegistrationFormProps = {
 }
 
 function RegistrationForm({ onSubmit }: RegistrationFormProps) {
-  const { register, handleSubmit, formState } = useForm<DataType>({
-    resolver: yupResolver(schema)
+  const { register, watch, handleSubmit, formState } = useForm<DataType>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      email: 'ola@wp.pl',
+      password: '',
+      agree: false,
+    }
   });
   const { errors } = formState;
-  console.log('Form errors: ', errors);
+  const watchAgree = watch('agree', false);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -47,6 +52,9 @@ function RegistrationForm({ onSubmit }: RegistrationFormProps) {
       </div>
       <div>
         <input type="submit" value="Send me" />
+      </div>
+      <div>
+        {watchAgree ? "User agreed to the terms" : "You need to agree" }
       </div>
     </form>
   );
