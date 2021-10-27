@@ -1,8 +1,9 @@
 import { Component } from 'react';
+import type { ReactNode } from 'react';
 
 interface GenericListProps<T> {
   items: T[];
-  itemRenderer: (item: T) => JSX.Element;
+  itemRenderer: (item: T) => ReactNode;
 }
 
 class GenericList<T> extends Component<GenericListProps<T>> {
