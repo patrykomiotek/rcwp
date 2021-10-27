@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { FormPage } from 'pages/FormPage';
 import { RegistrationForm } from './components/OldRegistrationForm/RegistrationForm';
 import { NameProviderComponent, MouseProviderComponent } from 'components/Patterns';
+import { GenericUsersList } from 'components/Patterns';
 import { store } from './store';
 
 // Start the mocking conditionally.
@@ -23,8 +24,9 @@ ReactDOM.render(
       <Profiler id="myId" onRender={(id, phase, actualDuration) => {
         // console.info(`[${id}] ${phase}: ${actualDuration}`);
       }}>
-        <NameProviderComponent />
-        <MouseProviderComponent />
+        <GenericUsersList />
+        {/* <NameProviderComponent />
+        <MouseProviderComponent /> */}
         {/* <FormPage /> */}
         {/* <RegistrationForm defaultEmail="test@wp.pl" /> */}
       </Profiler>
