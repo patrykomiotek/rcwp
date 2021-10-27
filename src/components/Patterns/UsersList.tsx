@@ -24,4 +24,6 @@ function GenericUsersList() {
   );
 }
 
+// GenericUsersList.displayName = "costam"
+
 export { GenericUsersList };

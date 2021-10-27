@@ -16,6 +16,7 @@ type UserListProps = {
   isLoading: boolean;
 }
 
+{/* <UserListConnected /> */}
 const UsersList = ({ users, fetchUsers, fetchOneUser, propAsyncFetchUsers, isLoading }: UserListProps) => {
   useEffect(() => {
     // fetchUsers();
